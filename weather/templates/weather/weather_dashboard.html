@@ -6,81 +6,26 @@
     <!-- Current Day -->
     <div class="col-md-3">
         <div class="card p-3 mb-4">
-            <h4>Monday</h4>
-            <p class="temperature">23°C</p>
-            <p>Real Feel: 34%</p>
-            <p>Sunrise: 6:34 AM</p>
-            <p>Sunset: 7:23 PM</p>
+            <h4>Current Weather</h4>
+            <p class="temperature">{{ current_weather.temperature }}°C</p>
+            <p>Wind Speed: {{ current_weather.windspeed }} km/h</p>
+            <p>Sunrise: {{ daily_weather.sunrise.0 }}</p>
+            <p>Sunset: {{ daily_weather.sunset.0 }}</p>
         </div>
     </div>
 
     <!-- Next Days -->
     <div class="col-md-9">
         <div class="row">
-            <!-- Repeat for each day -->
+            {% for day in daily_weather.temperature_2m_max %}
             <div class="col-md-2">
                 <div class="card p-3 text-center">
-                    <h5>Tue</h5>
-                    <p class="temperature">23°C</p>
+                    <h5>Day {{ forloop.counter }}</h5>
+                    <p class="temperature">{{ day }}°C</p>
                     <img src="https://via.placeholder.com/50" alt="Weather icon">
                 </div>
             </div>
-            <div class="col-md-2">
-                <div class="card p-3 text-center">
-                    <h5>Wed</h5>
-                    <p class="temperature">23°C</p>
-                    <img src="https://via.placeholder.com/50" alt="Weather icon">
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card p-3 text-center">
-                    <h5>Thur</h5>
-                    <p class="temperature">23°C</p>
-                    <img src="https://via.placeholder.com/50" alt="Weather icon">
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card p-3 text-center">
-                    <h5>Fri</h5>
-                    <p class="temperature">23°C</p>
-                    <img src="https://via.placeholder.com/50" alt="Weather icon">
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card p-3 text-center">
-                    <h5>Sat</h5>
-                    <p class="temperature">23°C</p>
-                    <img src="https://via.placeholder.com/50" alt="Weather icon">
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="card p-3 text-center">
-                    <h5>Sun</h5>
-                    <p class="temperature">23°C</p>
-                    <img src="https://via.placeholder.com/50" alt="Weather icon">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Charts Section -->
-<div class="row mt-4">
-    <!-- Average Monthly Temperature -->
-    <div class="col-md-8">
-        <div class="chart-container">
-            <h4 class="title">Average Monthly Temperature</h4>
-            <canvas id="temperatureChart"></canvas>
-        </div>
-    </div>
-
-    <!-- Nearby Cities -->
-    <div class="col-md-4">
-        <div class="card p-3">
-            <h4>Nearby Cities</h4>
-            <div class="divider my-2"></div>
-            <p>Minna, Nigeria - Windy</p>
-            <p>Lafia, Nigeria - Mostly Sunny</p>
+            {% endfor %}
         </div>
     </div>
 </div>
